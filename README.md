@@ -1,21 +1,10 @@
 # URL2SQL
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `url2sql` to your list of dependencies in `mix.exs`:
+[PostgREST](https://github.com/PostgREST/postgrest)-like URL to SQL transformer.
 
 ```elixir
-def deps do
-  [
-    {:url2sql, "~> 0.1.0"}
-  ]
-end
+iex> IO.iodata_to_binary URL2SQL.to_select("/todos")
+{"SELECT id, done, task, due FROM todos;", []}
+iex> IO.iodata_to_binary URL2SQL.to_select("/people?age=lt.13")
+{"SELECT ... FROM people WHERE age < ?", [13]}
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/url2sql>.
-
